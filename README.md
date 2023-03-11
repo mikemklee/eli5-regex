@@ -10,7 +10,5 @@ We could then use this description to render helper messages for form fields, to
 
 Similarly, we can use this for rendering validation error feedback.
 
-![image](https://user-images.githubusercontent.com/17537040/224508912-e553dcef-77a4-429a-9fdd-9b1655c46a1f.png)
-
-
+![image](https://user-images.githubusercontent.com/17537040/224511366-6ff97d79-8320-4bd7-b177-548fa8a47781.png)
 
