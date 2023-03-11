@@ -1,5 +1,7 @@
 # Explain RegEx like I'm 5 
 
+### [👉 Live preview](https://eli5-regex.vercel.app/)
+
 This is an experiment to explore potentials of leveraging OpenAI's [completions API](https://platform.openai.com/docs/api-reference/completions) for form field validation.
 
 Given a RegEx pattern, we will use the `text-davinci-003` to provide a human-friendly description of what would match the pattern.
