@@ -40,6 +40,7 @@ export default function Home() {
       <main className={styles.main}>
         <img src="/regex.png" className={styles.icon} />
         <h3>Explain RegEx like I'm 5</h3>
+
         <form onSubmit={onSubmit}>
           <input
             type="text"
@@ -61,6 +62,20 @@ export default function Home() {
             </ul>
           </div>
         ) : null}
+
+        <div className={styles.footer}>
+          <span>
+            made by{' '}
+            <a
+              href="https://github.com/mikemklee"
+              target="_blank"
+              rel="noreferrer"
+            >
+              @mikemklee
+            </a>
+          </span>
+        </div>
+
       </main>
     </div>
   );
