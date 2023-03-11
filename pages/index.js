@@ -22,8 +22,7 @@ export default function Home() {
         throw data.error || new Error(`Request failed with status ${response.status}`);
       }
 
-      setResult(data.result);
-      setPatternInput("");
+      setResult(JSON.parse(data.result));
     } catch (error) {
       // Consider implementing your own error handling logic here
       console.error(error);
@@ -51,7 +50,17 @@ export default function Home() {
           />
           <input type="submit" value="Explain the pattern" />
         </form>
-        <div className={styles.result}>{result}</div>
+
+        {result ? (
+          <div className={styles.result}>
+            <h4>Description</h4>
+            <ul>
+              {result.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
       </main>
     </div>
   );
