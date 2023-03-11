@@ -1,6 +1,6 @@
 # Explain RegEx like I'm 5 
 
-This is an experiment to explore potentials of leveraging OpenAI's completions API for form field validation.
+This is an experiment to explore potentials of leveraging OpenAI's [completions API](https://platform.openai.com/docs/api-reference/completions) for form field validation.
 
 Given a RegEx pattern, we will use the `text-davinci-003` to provide a human-friendly description of what would match the pattern.
 
