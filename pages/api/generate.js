@@ -15,11 +15,11 @@ export default async function (req, res) {
     return;
   }
 
-  const animal = req.body.animal || '';
-  if (animal.trim().length === 0) {
+  const pattern = req.body.pattern || '';
+  if (pattern.trim().length === 0) {
     res.status(400).json({
       error: {
-        message: "Please enter a valid animal",
+        message: "Please enter a valid pattern",
       }
     });
     return;
@@ -28,11 +28,12 @@ export default async function (req, res) {
   try {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: generatePrompt(animal),
-      temperature: 0.6,
+      prompt: generatePrompt(pattern),
+      max_tokens: 300,
+      temperature: 0,
     });
-    res.status(200).json({ result: completion.data.choices[0].text });
-  } catch(error) {
+    res.status(200).json({ result: completion.data.choices[0].text, hello: completion.data.choices[0] });
+  } catch (error) {
     // Consider adjusting the error handling logic for your use case
     if (error.response) {
       console.error(error.response.status, error.response.data);
@@ -48,15 +49,18 @@ export default async function (req, res) {
   }
 }
 
-function generatePrompt(animal) {
-  const capitalizedAnimal =
-    animal[0].toUpperCase() + animal.slice(1).toLowerCase();
-  return `Suggest three names for an animal that is a superhero.
+function generatePrompt(pattern) {
+  return `
+    To help out the users of my form field, I would like to show them what would be a valid input into the form field, given a RegEx pattern.
 
-Animal: Cat
-Names: Captain Sharpclaw, Agent Fluffball, The Incredible Feline
-Animal: Dog
-Names: Ruff the Protector, Wonder Canine, Sir Barks-a-Lot
-Animal: ${capitalizedAnimal}
-Names:`;
+    I want you to give me a description of what the RegEx pattern matches.
+
+    For example, if the provided pattern is ^[0-9]{1,17}$, then the description would be:
+      - Only contain digits between 0 and 9
+      - Be between 1 and 17 digits in length
+
+    Now, your turn. The pattern I would like you to describe is: ${pattern}
+
+    I want the answer in a JSON array literal, where each description is an element in the array (do not include the bullet point symbol).
+  `;
 }

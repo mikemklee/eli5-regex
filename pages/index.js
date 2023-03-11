@@ -14,7 +14,7 @@ export default function Home() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ animal: patternInput }),
+        body: JSON.stringify({ pattern: patternInput }),
       });
 
       const data = await response.json();
@@ -44,7 +44,7 @@ export default function Home() {
         <form onSubmit={onSubmit}>
           <input
             type="text"
-            name="animal"
+            name="pattern"
             placeholder="Enter a RegEx pattern e.g. ^[a-z]$"
             value={patternInput}
             onChange={(e) => setPatternInput(e.target.value)}
