@@ -4,11 +4,13 @@ import styles from "./index.module.css";
 
 export default function Home() {
   const [patternInput, setPatternInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState();
 
   async function onSubmit(event) {
     event.preventDefault();
     try {
+      setIsLoading(true);
       const response = await fetch("/api/generate", {
         method: "POST",
         headers: {
@@ -27,6 +29,8 @@ export default function Home() {
       // Consider implementing your own error handling logic here
       console.error(error);
       alert(error.message);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -62,6 +66,8 @@ export default function Home() {
             </ul>
           </div>
         ) : null}
+
+        {isLoading ? <div className={styles.loading}>Generating a response...</div> : null}
 
         <div className={styles.footer}>
           <span>

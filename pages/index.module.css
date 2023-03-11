@@ -63,6 +63,11 @@
   text-align: center;
   cursor: pointer;
 }
+
+.main .loading {
+  margin-top: 40px;
+}
+
 .main .result {
   margin-top: 40px;
   width: 100%;
